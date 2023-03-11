@@ -7,22 +7,35 @@
 
 Deliver:
 
-*   [ ] Re-write the instructions in your own words.
+*   [X] Re-write the instructions in your own words.
     *   If you don't do this, you won't know what you're supposed to do!
     *   Don't leave out details!
+	1. Thoroughly read all documentation and analyze it
+	2. Read the documentation for open() to learn how to open a file in write mode
+	3. Read the design documentation from the C++ team and write 250-300 words about it, committed at the design tag or before
+	4. Create a UML Class Diagram with a draft in the designed tag and one in the deployed tag
+	5. Create a User's manual, one at the designed tag and one at the deployed tag for the end user
+	6. Create pseudocode for the functions and classes
+	7. Implement those functions into the program
+	8. Thoroughly test the code with the tests created by the C++ team, and create 4 tests for the Card class and 2 tests for the Deck class (or more)
+	9. Publish the program
 *   [ ] Explain the problem this program aims to solve.
-    *   Describe what a *good* solution looks like.
+    *   This program aims to create Bingo cards for customers
+    *   A *good* solution looks like:
 	1. Has case-insensitive input from prompts to the user(Upper everything inputted)
 	2. Crashes when a wrong filename is entered
     	3. Repeats prompts until: for strings, there is a character; for integer, .isdigit() returns true and is within range(prompt should show the range of numbers acceptable)
-	4. Show the user what kind of input is expected by the program
-	5. Use the number of position in the Deck as an identifier for the card there
-	6. With 'N' as the size of the card, the card is NxN
-	7. Numbers on cards are from the integers [1 to M], with M being chosen by the user from [2*(N^2) to floor(3.9*(N^2))]
-	8. Numbers should only appear on a card once
-	9. Each column is named with one letter from 'BINGOLARDYPEZMUX', starting from B
-	10. Odd-sized cards have a 'FREE!' square in the center square
-	11. Number of bingo cards is chosen by the user from 2 to 8192 inclusive
+	4. Show the user what kind of input is expected by the program, including the range of acceptable values
+	5. Error messages show the user how to give good input
+	6. Use the number of position in the Deck as an identifier for the card there
+	7. With 'N' as the size of the card, the card is NxN (COLxROW)
+	8. Numbers on cards are from the integers 1 to M, with M being chosen by the user from 2*(N^2) to floor(3.9*(N^2))
+	9. Numbers should only appear on a card once
+	10. Each column is named with one letter from 'BINGOLARDYPEZMUX', starting from B
+	11. Odd-sized cards have a 'FREE!' square in the center square
+	12. Number of bingo cards is chosen by the user from 2 to 8192 inclusive
+	13. A card or a whole deck can be printed to the command line
+	14. The deck can be saved to a file
     *   List what you already know how to do.
 	** Accept and validate input from the user
 	*** Repeat prompt when invalid input is given
@@ -30,27 +43,31 @@ Deliver:
 	** Print a Bingo card that complies with the customer's format
 	** Pick numbers for Bingo cards that are random, don't repeat on a card, and are arranged in columns with increasing value
     *   Point out any challenges that you can foresee.
-	** Display colorful menus and prompts
-	** Print output to a file instead of screen in Python
-	** Write unit tests
-*   [ ] List all of the data that is used by the program, making note of where it comes from.
+	** Displaying colorful menus and prompts
+	** Printing output to a file instead of screen in Python
+	** Writing unit tests
+*   [X] List all of the data that is used by the program, making note of where it comes from.
 	** Menu entries from user
-	*** Single characters
-	*** Letters accepted in both upper and lower case
-	** Size of Bingo cards
-	*** Integers from 3 to 16
-	** Range of numbers that can appear on a Bingo card, depending on size of the card N
-	*** The smallest number that can appear on a Bingo card is 1
-	*** The biggest number M is one in the range of 2 * (N^2) to floor(3.9 * (N^2))
+	*** Single characters from the user
+	*** Letters accepted in both upper and lower case from the user
+	** Size of Bingo cards given by the user, an integer from 3 to 16
+	** Range of numbers that can appear on a Bingo card, depending on size of the card N from user
+	*** The smallest number that can appear on a Bingo card is 1 by default
+	*** The biggest number M is one in the range of 2 * (N^2) to floor(3.9 * (N^2)) calculated by the program
     *   Explain what form the output will take.
 	** Menus and Prompts
-	*** A cool main menu with an ASCII-art logo
+	*** Includes a cool main menu with an ASCII-art logo
 	** Bingo Cards
-	*** Numbered by position in the deck
+	*** Are numbered by position in the deck
 	*** Columns of numbers on the cards have a letter for a name.  Combined with a number, it is easy to see if that number exists on your card
 	*** Cells on Bingo cards are printed with dashes (-), plus signs (+), and pipes (|)
-	*** Cards can be printed to the screen one at a
-*   [ ] List the algorithms that will be used (but don't write them yet).
+	*** Cards can be printed to the screen one at a time or all at once
+	*** The whole deck can be saved to a file
+*   [X] List the algorithms that will be used (but don't write them yet).
+	** Sorting algorithm
+	** Shuffling algorithm
+	** One to create a list of numbers from 1 to M in order, then randomize it, and pop elements so they can't be reused
+	** Give the first column the first 1/N numbers in the above list, second column gets numbers in 2/N, etc.
 *   [ ] Tag the last commit in this phase `analyzed`
     *   *Grace Points: if this tag is pushed by midnight on the Sunday before the due date, you will receive up to 5 points back*
 
@@ -67,12 +84,6 @@ Deliver:
     *   Parameter lists.
     *   Documentation strings that explain its purpose and types of inputs and outputs.
 *   [ ] Pseudocode that captures how each function works.
-	def function (to get max number on Bingo card)
-		pick a number in the range of 2 * (N^2) to floor(3.9 * (N^2))
-	def maxNumber(numColumns = N):
-		maxNum = randint(range(2 * (N^2), floor(3.9 * (N^2)) + 1))
-		return maxNum
-		
     *   Pseudocode != source code.  Do not paste your finished source code into this part of the plan.
 *   Explain what happens in the face of good and bad input.
     *   Write a few specific examples that occur to you, and use them later when testing
