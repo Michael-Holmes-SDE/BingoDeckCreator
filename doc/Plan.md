@@ -19,7 +19,7 @@ Deliver:
 	7. Implement those functions into the program
 	8. Thoroughly test the code with the tests created by the C++ team, and create 4 tests for the Card class and 2 tests for the Deck class (or more)
 	9. Publish the program
-*   [ ] Explain the problem this program aims to solve.
+*   [X] Explain the problem this program aims to solve.
     *   This program aims to create Bingo cards for customers
     *   A *good* solution looks like:
 	1. Has case-insensitive input from prompts to the user(Upper everything inputted)
@@ -68,7 +68,14 @@ Deliver:
 	** Shuffling algorithm
 	** One to create a list of numbers from 1 to M in order, then randomize it, and pop elements so they can't be reused
 	** Give the first column the first 1/N numbers in the above list, second column gets numbers in 2/N, etc.
-*   [ ] Tag the last commit in this phase `analyzed`
+*   [X] C++ UML Diagram Analysis.
+	** There are 7 modules, excluding 'bingo' and 'runTests'.
+	** The ‘UserInterface’ module has a private attribute ‘m_deck’, with type ‘Deck’(another module and a class). ‘UserInterface’ has two public operations: UserInterface(), and run(). It also has 7 private operations: logo() which prints the logo, createDeck() which creates a deck, deckMenu() which uses the ‘Menu’ module, getStr(string entered from prompt) which returns that string , printCard() which prints the card, and saveDeck() which saves the deck to a file.
+	** The ’Menu’ module has two private attributes, m_szHeader which is a string and m_arrOptions which is an array from the operation MenuOption in the ‘MenuOption’ class. There are six public operations: Menu which uses the szHeader attribute, operator+ which takes an option from ‘MenuOption’, operator[] which takes an integer from nIdx and returns a MenuOption, length which returns an integer, isValidCommand which takes a character given by chCommand and returns a Boolean, and prompt which returns void.
+	** The ’MenuOption’ module is a realization of the ‘Menu’ class and has two private attributes, m_chCommand which is a character and m_szDescription which is a string. There are four public operations: MenuOption which takes chCommand and szDescription as arguments, getCommand which returns a character, getDescription returning a string, and an operator overload.
+	** ‘TtyColors’ extends ‘UserInterface’, ‘MenuOption’, and ‘Menu’ by providing the colors black, red, green, yellow, blue, magenta, cyan, and white for printing to the console.
+	** The ‘Deck’ module/class is made up of between 2 to 8192 cards from the ‘Card’ class. Both use the ‘RandNumberSet’ class. There are 4 private attributes: m_nCardSize, m_nNumCards, and m_nMaxNum return integers and m_arrCards gives an array of the cards. The four public operators are: Deck taking nCardSize, nNumCards, and nMaxNum as arguments, getSize returning an integer, an operator overload of arrays taking nIdx and returning a Card. 
+*   [X] Tag the last commit in this phase `analyzed`
     *   *Grace Points: if this tag is pushed by midnight on the Sunday before the due date, you will receive up to 5 points back*
 
 
@@ -83,6 +90,7 @@ Deliver:
     *   Descriptive names.
     *   Parameter lists.
     *   Documentation strings that explain its purpose and types of inputs and outputs.
+    *   To open a file for writing and append to the end of the file, use 'open(<FILE>, mode='a')'
 *   [ ] Pseudocode that captures how each function works.
     *   Pseudocode != source code.  Do not paste your finished source code into this part of the plan.
 *   Explain what happens in the face of good and bad input.
