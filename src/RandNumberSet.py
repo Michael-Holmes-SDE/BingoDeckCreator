@@ -69,7 +69,7 @@ class RandNumberSet():
             if segment <= remainder:  	  	  
                 high += 1  	  	  
             # XXX: I can never remember; is the endpoint of `range()` included or excluded?  	  	  
-            self.__m_arrSegments.append(list(range(low, high + 1)))  	  	  
+            self.__m_arrSegments.append(list(range(low, high)))  # WAS high + 1 	  	  
             low = high  	  	  
 
     def shuffle(self):  	  	  

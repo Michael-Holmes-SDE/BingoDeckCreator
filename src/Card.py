@@ -26,7 +26,7 @@ class Card():
     def __init__(self, nId, randNumSet):  	  	  
         """  	  	  
         Initialize a Bingo! card  	  	  
-        """  	  	  
+        """
         pass  	  	  
 
     def getID(self):  	  	  

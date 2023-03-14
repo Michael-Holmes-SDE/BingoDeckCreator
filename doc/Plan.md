@@ -87,14 +87,245 @@ Deliver:
 Deliver:
 
 *   [ ] Function signatures that include:
-	* os system thing in UML Diagram is an operator overload, usually in the string class
-	* m_ means it is a private attribute of the class
-	* To open a file for writing and append to the end of the file, use 'open(<FILE>, mode='a')'
     *   Descriptive names.
     *   Parameter lists.
     *   Documentation strings that explain its purpose and types of inputs and outputs.
 *   [ ] Pseudocode that captures how each function works.
-    *   Pseudocode != source code.  Do not paste your finished source code into this part of the plan.
+	* Unless stated otherwise, all attributes and operators are public
+	1. MenuOption class
+		import TtyColors class
+		define class MenuOption that uses TtyColors
+			define class constructor taking self, chCommand, and szDescription as parameters
+				create private attribute m_chCommand of class equal to chCommand
+				if private attribute m_chCommand is an empty string
+					set attribute m_chCommand to '?'
+				else if the length of attribute m_chCommand is greater than 1
+					set attribute m_chCommand to the first element of m_chCommand
+				create private attribute m_szDescription equal to szDescription
+				if attribute m_szDescription is an empty string
+					set attribute m_szDescription equal to '???'
+			define getCommand operation with self as a parameter
+				return the private attribute m_chCommand
+			define getDescription operation with self as a parameter
+				return the private attribute m_szDescription
+			define string dunder operator overload with self as a parameter
+				return the value of m_chCommand in yellow and the value of m_szDescription in cyan
+
+	2. Menu class
+		import TtyColors class
+		define class Menu that uses TtyColors
+			define class constructor that takes self and szHeader as paramaters
+				create private attribute m_szHeader equal to szHeader
+				create private attribute m_arrOptions as an empty array
+			define iadd dunder operator overload with self and option as parameters
+				append the option parameter to m_arrOptions attribute
+				return self
+			define getitem dunder operator overload with self and nIdx as parameters
+				if nIdx is greater than or equal to 0 and the length of self is greater than nIdx
+					return the value of m_arrOptions at the nIdx'th element
+				else raise an index error
+			define len dunder operator overload with self as a parameter
+				return the length of m_arrOptions array
+			define isValidCommand operator that takes self and chCommand as parameters
+				for all elements in the length of the class(which is the length of m_arrOptions)
+					if the uppercase value of chCommand is equal to the i'th index of self.getCommand as an uppercase value
+						return True
+					else return False
+			define prompt operator with self as a parameter
+				while isValidCommand returns True
+					create empty array called options
+					create string variable called header which has the value of m_szHeader followed by " menu"
+					create string variable called bar which is an "=" repeated length of header times
+					print bar on a newline, then header in white on a newline, and then bar again on a newline
+					for all elements in self(which is the length of m_arrOptions)
+						set option equal to the current element
+						if option is not a None type
+							print the option
+							append to options option.getCommand() in yellow
+					print in all white a newline, then "Enter a " + value of m_szHeader + " command"
+					create variable called command equal to user input
+					if the command is valid
+						return the command
+					else print the command in magenta and then " is not a valid option"
+	3. TtyColors class
+		define class TtyColors
+			define operator black with self and s (a string) as parameters
+				return the string in black
+			define operator red with self and s (a string) as parameters
+				return the string in red
+			define operator green with self and s (a string) as parameters
+				return the string in green
+			define operator yellow with self and s (a string) as parameters
+				return the string in yellow
+			define operator blue with self and s (a string) as parameters
+				return the string in blue
+			define operator magenta with self and s (a string) as parameters
+				return the string in magenta
+			define operator cyan with self and s (a string) as parameters
+				return the string in cyan
+			define operator white with self and s (a string) as parameters
+				return the string in white
+	4. RandNumberSet class
+		import random
+		define class RandNumberSet
+			create int variable MIN_SIZE equal to 3
+			create int variable MAX_SIZE equal to 16
+			define class constructor with self, nSize, and nMax as parameters
+				create private attribute of class m_nRowPos equal to 0
+				create private attribute of class m_nSize equal to nSize
+				if m_nSize is less than MIN_SIZE(which is 3)
+					set m_nSize equal to MIN_SIZE(equal to 3)
+				else if m_nSize is greater than MAX_SIZE(which is 16)
+					set m_nSize equal to MAX_SIZE(equal to 16)
+				create private attribute of class m_nMax equal to nMax
+				if m_nMax is less than m_nSize squared
+					set m_nMax equal to m_nSize squared
+				create private attribute m_arrSegments as an empty array
+				create variable segmentSize by integer dividing m_nMax over m_nSize
+				create variable remainder equal to the modulo of m_nMax over m_nSize(the remainder left over after the integer division)
+				create variable low equal to 1
+				for segments in m_nSize
+					create variable high equal to low + segmentSize
+					if the segment is less than or equal to remainder
+						increment high by 1
+					append to m_arrSegments a list of range low to high
+					set low equal to high
+			define shuffle operator with self as a parameter
+				for each segment in m_arrSegments
+					randomly shuffle the segment
+				set m_nRowPos equal to 0
+			define getNextRow operator with self as a parameter
+				if m_nRowPos is greater than or equal to m_nSize
+					return None
+				create empty array called row
+				for all segments in m_arrSegments
+					append to array row the current segment
+				increment m_nRowPos by 1
+				return row array
+			define getSegments operator with self as a parameter
+				return m_arrSegments
+			define string dunder operator overload with self as a parameter
+				create empty array called strs
+				for all segments in m_arrSegments
+					append to array strs the string of the current segment
+				return the strs array with newlines in each element
+			define getItem dunder operator overload with self and n as parameters
+				if n is greater than or equal to 0 and less than m_nSize
+					create empty array called row
+					for all segments in m_arrSegments
+						append to row the current segments n'th element
+					return the row array
+				else raise an index error
+
+	5. Card class
+		define new class Card
+			create a list called COLUMN_NAMES containing the following values in order: BINGOLARDYPEZMUX
+			define class constructor with self, nId, and randNumSet as parameters
+				create private attribute of class called m_nId equal to nId
+				create private attribute of class called m_arrNums as an empty integer array
+			define getID operator that takes self as a parameter
+				return the integer value of m_nId
+			define numberAt operator that takes self, nRow, and nCol as parameters
+			        return the value at m_arrNums[nCol + ((nRow - 1) * nCol)] (MAY BE "FREE!")
+			define length dunder operator overload that takes self as a parameter
+				return the square root of the length of m_arrNums
+			define string dunder operator overload that takes self as a parameter
+				create string called printDivider that prints a newline, then "+", then "-----+" for how many columns there are
+				for all elements in COLUMN_NAMES in range of the length of the class
+					print the element with no newline, three spaces before, and two spaces after 
+				print printDivider
+				for all elements in m_arrNums
+					if it is the first element in that row
+						print a "|"
+					if the element is a positive number
+						print the element with formatting so there are two blank spaces on the right, then a "|"
+					else if the element is negative
+						print "FREE!|"
+					if it is the last element in that row
+						print printDivider
+	6. Deck class
+		import Card class
+		import RandNumberSet class
+		define new class Deck
+			define class constructor with self, nCardSize, nNumCards, and nMaxNum as parameters
+				create private attribute of class m_nCardSize equal to nCardSize
+				create private attribute of class m_nNumCards equal to nNumCards
+				create private attribute of class m_nMaxNum equal to nMaxNum
+				create private attribute of class m_arrCards as an array with all the cards in it
+			define length dunder operator overload with self as a parameter
+				return the integer m_nNumCards
+			define getitem dunder operator overload with self and nIdx as parameters
+				return the card in the N'th element of n_arrCards
+			define string dunder operator overload with self as a parameter
+				for all elements in the array m_arrCards
+					print element
+	7. UserInterface class
+		import Deck class
+		import Menu class
+		import MenuOption class
+		import TtyColors class
+		define new class UserInterface that uses TtyColors
+			define class constructor with self as a parameter
+				create private attribute of class m_deck equal to None
+			define run operator with self as a parameter
+				while it is True
+					print the logo
+					create new variable menu equal to Menu("Main")
+					append to menu MenuOption("C", "Create a new deck")
+					append to menu MenuOption("X", "Exit the program")
+					create new variable command equal to input from the user
+					if the uppered command input is "C"
+						create a new Deck
+					else if the uppered command input is "X"
+						close the program
+			define private logo operator with self as a parameter
+				print the logo
+			define private createDeck operator with self as a parameter
+				create variable size by asking the user to enter the size of the card they want and saving it, showing it must be between 3 and 16 (use get_int)
+				create variable maxNum by asking the user to enter it (use get_int)
+				create variable numCards by asking the user to enter it, showing it must be between 2 and 8192  (use get_int)
+				create the new Deck object by calling Deck(size, numCards, maxNum)
+				call __deckMenu()
+			define private deckMenu operator with self as a parameter
+				create variable menu equal to Menu("Deck")
+				append to menu MenuOption("P", "Print a card to the screen")
+				append to menu MenuOption("D", "Display the whole deck to the screen")
+				append to menu MenuOption("S", "Save the whole deck to a file")
+				append to menu MenuOption("X", "Return to the Main menu")
+				while True
+					create variable command equal to menu.prompt()
+					if the upper of command is "P"
+						print the Card
+					if the upper of command is "D"
+						print the deck to the screen
+					if the upper of command is "S"
+						save the deck
+					else if the upper of command is "X"
+						exit the program
+			define private getStr operator with self and prompt as parameters
+				create a string variable inputStr as an empty string
+				while inputStr is an empty string
+					set inputStr to what is entered by the user when prompted, using the prompt parameter as the prompt to print
+				return inputStr
+			define private operator getInt with self, prompt, lo, and hi as parameters
+				create an integer variable inputInt equal to 0
+				while inputInt is not inbetween lo and hi
+					set inputInt to what is entered by the user when prompted, using prompt parameter as the prompt to print 
+			define private operator printCard with self as a parameter
+				create an int variable cardNum by prompting the user for which card to print
+				print the cardNum Card in Deck
+				return None
+			define private operator saveDeck with self as a parameter
+				create a str variable fileName by prompting the user for the name of the file to write the Deck into
+				open the fileName file in write mode using the format open(fileName, mode='a')
+				Use the format
+				with open('fileName', 'a') as file
+					sys.stdout = f
+					
+
+	DON'T FORGET ABOUT TEST CASES, THE USER MANUAL, AND THE UML DIAGRAM
+			
+			
 *   Explain what happens in the face of good and bad input.
     *   Write a few specific examples that occur to you, and use them later when testing
 *   [ ] Tag the last commit in this phase `designed`

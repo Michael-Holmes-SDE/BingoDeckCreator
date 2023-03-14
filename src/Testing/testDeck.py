@@ -21,7 +21,7 @@
 #       reasonable and customary use of the source files.  	  	  
 
 import unittest  	  	  
-import Deck  	  	  
+from Deck import Deck  	  	  
 
 
 class TestDeck(unittest.TestCase):  	  	  

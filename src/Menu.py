@@ -48,7 +48,7 @@ class Menu(TtyColors):
 
         This method was called `operator+` in the C++ version  	  	  
 
-        Be careful: No check is made for duplicate MenuOptions!  	  	  
+        Be careful: No check is made for duplicate MenuOptions!     ******MAKE A TEST CASE FOR IT*******	  	  
         """  	  	  
         self.__m_arrOptions.append(option)  	  	  
         return self  	  	  
