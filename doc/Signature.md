@@ -6,4 +6,5 @@
 | March 11th  |   1  hour  | Nearly completed the analyze phase of Plan.md
 | March 12th  |  1.25 hours| Found out how to open file for writing and finished the analyze phase of the SDP
 | March 13th  |   1  hour  | Worked on the Design phase and did the C++ Team Plan Review
-| TOTAL       |  4.75 hours|
+| March 14th  |   4  hours | Completed the Design phase, the UML Diagram and the User Manual
+| TOTAL       | 8.75 hours |

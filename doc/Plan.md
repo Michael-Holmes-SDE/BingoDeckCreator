@@ -86,11 +86,11 @@ Deliver:
 
 Deliver:
 
-*   [ ] Function signatures that include:
+*   [X] Function signatures that include:
     *   Descriptive names.
     *   Parameter lists.
     *   Documentation strings that explain its purpose and types of inputs and outputs.
-*   [ ] Pseudocode that captures how each function works.
+*   [X] Pseudocode that captures how each function works.
 	* Unless stated otherwise, all attributes and operators are public
 	1. MenuOption class
 		import TtyColors class
@@ -238,7 +238,7 @@ Deliver:
 					if it is the first element in that row
 						print a "|"
 					if the element is a positive number
-						print the element with formatting so there are two blank spaces on the right, then a "|"
+						print the element with center formatting in 5 spaces and then a "|"
 					else if the element is negative
 						print "FREE!|"
 					if it is the last element in that row
@@ -318,17 +318,24 @@ Deliver:
 			define private operator saveDeck with self as a parameter
 				create a str variable fileName by prompting the user for the name of the file to write the Deck into
 				open the fileName file in write mode using the format open(fileName, mode='a')
-				Use the format
-				with open('fileName', 'a') as file
-					sys.stdout = f
-					
-
-	DON'T FORGET ABOUT TEST CASES, THE USER MANUAL, AND THE UML DIAGRAM
-			
+				Use the format:
+					org_stdout = sys.stdout
+					with open('fileName', 'a') as file
+						sys.stdout = f
+						print(Deck)
+						sys.stdout = org_stdout
+				
 			
 *   Explain what happens in the face of good and bad input.
     *   Write a few specific examples that occur to you, and use them later when testing
-*   [ ] Tag the last commit in this phase `designed`
+	1. When an invalid input is given, it should say it is not a valid option and reprint the prompt, including what is valid input just like before
+	2. When 'p' or 'P' is inputted in the deck menu, it should print a card to the screen
+	3. When 'd' or 'D' is inputted in the deck menu, it should print the whole deck to the screen
+	4. When 's' or 'S' is inputted in the deck menu, it should save the whole deck to a file that the user gets to name
+	5. When 'x' or 'X' is ever entered it moves back, ie. from the Deck menu to the Main menu, and if in the Main menu it will terminate the program
+	6. When a valid size of the card is input, it should save and the card will have that many rows and columns
+	7. When a valid deck size is input, there should be that number of cards in the deck
+*   [X] Tag the last commit in this phase `designed`
     *   *Grace Points: if this tag is pushed by midnight on the Sunday before the due date, you will receive up to 5 points back*
 
 
@@ -338,7 +345,7 @@ Deliver:
 **Finally, you can write code!**
 
 Deliver:
-
+	CREATE A NEW UML DIAGRAM FOR THIS PHASE
 *   [ ] More or less working code.
 *   [ ] Note any relevant and interesting events that happened while you wrote the code.
     *   e.g. things you learned, things that didn't go according to plan
@@ -349,7 +356,7 @@ Deliver:
 *(30% of your effort)*
 
 Deliver:
-
+		CREATE NEW/FINISH INCLUDED TEST CASES (THERE SHOULD BE AT LEAST 16)
 *   [ ] A set of test cases that you have personally run on your computer.
     *   Include a description of what happened for each test case.
     *   For any bugs discovered, describe their cause and remedy.
