@@ -87,10 +87,12 @@ Deliver:
 Deliver:
 
 *   [ ] Function signatures that include:
+	* os system thing in UML Diagram is an operator overload, usually in the string class
+	* m_ means it is a private attribute of the class
+	* To open a file for writing and append to the end of the file, use 'open(<FILE>, mode='a')'
     *   Descriptive names.
     *   Parameter lists.
     *   Documentation strings that explain its purpose and types of inputs and outputs.
-    *   To open a file for writing and append to the end of the file, use 'open(<FILE>, mode='a')'
 *   [ ] Pseudocode that captures how each function works.
     *   Pseudocode != source code.  Do not paste your finished source code into this part of the plan.
 *   Explain what happens in the face of good and bad input.
