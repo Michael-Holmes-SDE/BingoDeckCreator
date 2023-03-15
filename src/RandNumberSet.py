@@ -67,9 +67,8 @@ class RandNumberSet():
             # there will be some numbers left over.  Distribute these extra  	  	  
             # numbers starting from segment #0, going up from there  	  	  
             if segment <= remainder:  	  	  
-                high += 1  	  	  
-            # XXX: I can never remember; is the endpoint of `range()` included or excluded?  	  	  
-            self.__m_arrSegments.append(list(range(low, high)))  # WAS high + 1 	  	  
+                high += 1
+            self.__m_arrSegments.append(list(range(low, high)))
             low = high  	  	  
 
     def shuffle(self):  	  	  
@@ -88,7 +87,7 @@ class RandNumberSet():
 
         This method automatically keeps track of which row is up next  	  	  
         """  	  	  
-        if self.__m_nRowPos >= self.__m_nSize:  	  	  
+        if self.__m_nRowPos >= self.__m_nSize:
             return None  	  	  
         row = []  	  	  
         for seg in self.__m_arrSegments:  	  	  

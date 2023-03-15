@@ -21,7 +21,7 @@
 #       reasonable and customary use of the source files.  	  	  
 
 from Card import Card  	  	  
-from RandNumberSet import RandNumberSet  	  	  
+from RandNumberSet import RandNumberSet
 
 
 class Deck():  	  	  
@@ -29,28 +29,37 @@ class Deck():
         """  	  	  
         Deck constructor  	  	  
         """  	  	  
-        pass  	  	  
+        self.__m_nCardSize = nCardSize
+        self.__m_nNumCards = nNumCards
+        self.__m_nMaxNum = nMaxNum
+        self.__m_arrCards = []
+        for i in range(nNumCards):
+            self.__m_arrCards.append(Card(i + 1, RandNumberSet(nCardSize, nMaxNum)))
 
-    def __len__(self):  	  	  
+    def __len__(self):
         """  	  	  
         Return an integer: the number of cards in this deck  	  	  
 
         This method was called `getSize` in the C++ version  	  	  
-        """  	  	  
-        pass  	  	  
+        """
+        numCards = self.__m_nNumCards
+        return numCards
 
-    def __getitem__(self, nIdx):  	  	  
+    def __getitem__(self, nIdx):
         """  	  	  
         Return Card N from the Deck  	  	  
 
         This method was called `operator[]` in the C++ version  	  	  
-        """  	  	  
-        pass  	  	  
+        """
+        return self.__m_arrCards[nIdx - 1]
 
-    def __str__(self):  	  	  
+    def __str__(self):
         """  	  	  
         Return a string: return the entire Deck as a string  	  	  
 
         This is basically equivalent to the `operator<<` method in the C++ version  	  	  
-        """  	  	  
-        pass  	  	  
+        """
+        returnString = ""
+        for card in self.__m_arrCards:
+            returnString += Card.__str__(card)
+        return returnString

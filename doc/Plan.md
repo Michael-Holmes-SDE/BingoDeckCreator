@@ -346,10 +346,15 @@ Deliver:
 
 Deliver:
 	CREATE A NEW UML DIAGRAM FOR THIS PHASE
-*   [ ] More or less working code.
-*   [ ] Note any relevant and interesting events that happened while you wrote the code.
+*   [X] More or less working code.
+*   [X] Note any relevant and interesting events that happened while you wrote the code.
     *   e.g. things you learned, things that didn't go according to plan
-*   [ ] Tag the last commit in this phase `implemented`
+	1. I added a newline to the print statement on line 63 of Card.py
+	2. I didn't use get_int in UserInterface.py, I just made the input an integer
+	3. Added the low and high values for the maxNum on a card in UserInterface.py 'using the equations
+	4. Changed operators in Card.py to use a 2D list instead of 1D 
+	5. Had problems where the objects were being referenced instead of performing the operation
+*   [X] Tag the last commit in this phase `implemented`
 
 
 ## Phase 3: Testing and Debugging (tag name `tested`)
