@@ -379,14 +379,14 @@ Deliver:
 
 Deliver:
 
-*   [ ] Tag the last commit in this phase `deployed`
-*   [ ] Your repository is pushed to GitLab.
-*   [ ] **Verify** that your final commit was received by browsing to its project page on GitLab.
+*   [X] Tag the last commit in this phase `deployed`
+*   [X] Your repository is pushed to GitLab.
+*   [X] **Verify** that your final commit was received by browsing to its project page on GitLab.
     *   Ensure the project's URL is correct.
     *   Review the project to ensure that all required files are present and in correct locations.
     *   Check that unwanted files have not been included.
     *   Make any final touches to documentation, including the Sprint Signature and this Plan.
-*   [ ] **Validate** that your submission is complete and correct by cloning it to a new location on your computer and re-running it.
+*   [X] **Validate** that your submission is complete and correct by cloning it to a new location on your computer and re-running it.
 	*	Run your program from the command line so you can see how it will behave when your grader runs it.  **Running it in PyCharm is not good enough!**
     *   Run through your test cases to avoid nasty surprises.
     *   Check that your documentation files are all present.
