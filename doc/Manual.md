@@ -21,6 +21,13 @@
 
 ## Common Errors and How to Fix Them
 1. If the program says that your input is invalid, check the prompt it gives you to see what input is valid.
-2. If Step 2 in 'Running The Program' fails, the program is in a different folder. If this is the case, navigate to your file explorer and search for the folder the program is in and use 'cd {Name of Folder}' and press [ENTER].
- 
+2. If Step 2 in 'Running The Program' fails, the program is in a different directory. If this is the case, navigate to your file explorer and search for the directory the program is in, navigate to that folder and attempt to run the program again from that directory.
 
+## Testing the Program
+1. Navigate to the programs main directory, type in 'python src/runTests.py' and press [ENTER] to run the tests.
+2. If all tests pass, your copy of the program is good!
+3. If any test fails, the easiest way is to reinstall the program with the steps below.
+
+## Reinstalling The Program
+1. Navigate to the programs main directory
+2. Type in 'git restore .' to reinstall the program. 
