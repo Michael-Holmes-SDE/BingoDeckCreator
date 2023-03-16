@@ -8,5 +8,5 @@
 | March 13th  |   1  hour  | Worked on the Design phase and did the C++ Team Plan Review
 | March 14th  |   4  hours | Completed the Design phase, the UML Diagram and the User Manual
 | March 15th  |  6.5 hours | Fully implemented the program and did most of the testing section
-| March 16th  |  0.5 hours | Completed the testing section and everything checks out!
-| TOTAL       | 15.75 hours| 
+| March 16th  |  1.25 hours| Completed the testing section and deployed
+| TOTAL       | 16.5 hours | 
