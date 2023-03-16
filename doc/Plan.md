@@ -362,11 +362,16 @@ Deliver:
 
 Deliver:
 		CREATE NEW/FINISH INCLUDED TEST CASES (THERE SHOULD BE AT LEAST 16)
-*   [ ] A set of test cases that you have personally run on your computer.
+*   [X] A set of test cases that you have personally run on your computer.
     *   Include a description of what happened for each test case.
     *   For any bugs discovered, describe their cause and remedy.
     *   Write your test cases in plain language such that a non-coder could run them and replicate your experience.
-*   [ ] Tag the last commit in this phase `tested`
+	1. All of the test cases are automated! Simply navigate to the programs main directory and type in 'python src/runTests.py' and press [ENTER].
+	2. If everything is working correctly, there should be no error messages, and no tests will say FAIL.
+	3. If any test fails, it will show 'FAIL' next to the test. 
+		1. The easiest way to fix this is to replace the faulty program with a new download of the original.
+		2. Run 'git restore .' to restore the working program.
+*   [X] Tag the last commit in this phase `tested`
 
 
 ## Phase 4: Deployment (tag name `deployed`)
